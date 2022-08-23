@@ -1,6 +1,6 @@
 from tkinter import W, Button, Frame, Label, PhotoImage, Toplevel, filedialog, messagebox, CENTER
-from leerPaciente import LeerPaciente
 from cargarArchivo import CargarArchivo
+from asdf import Princip
 
 class Inicio:
 
@@ -44,11 +44,11 @@ class Inicio:
         self.botonCargarArchivos.place(x=0, y=0, width=120, height=120)
         self.botonCargarArchivos.bind("<Enter>", self.cursorSobreBotonCargar)
         self.botonCargarArchivos.bind("<Leave>", self.cursorFueraBotonCargar)
-        self.botonLeerPaciente = Button(self.panel, bg="#154360", activebackground="#1F618D",  cursor="hand2", bd=0, command=self.leerPaciente)
+        self.botonLeerPaciente = Button(self.panel, bg="#154360", activebackground="#1F618D",  cursor="hand2", bd=0)
         self.botonLeerPaciente.place(x=121, y=0, width=120, height=120)
         self.botonLeerPaciente.bind("<Enter>", self.cursorSobreBotonLeer)
         self.botonLeerPaciente.bind("<Leave>", self.cursorFueraBotonLeer)
-        self.botonGenerarArchivo = Button(self.panel, bg="#154360",  activebackground="#1F618D",  cursor="hand2", bd=0, command=self.generarArchivo)
+        self.botonGenerarArchivo = Button(self.panel, bg="#154360",  activebackground="#1F618D",  cursor="hand2", bd=0, command=self.leerPaciente)
         self.botonGenerarArchivo.place(x=242, y=0, width=120, height=120)
         self.botonGenerarArchivo.bind("<Enter>", self.cursorSobreBotonGenerar)
         self.botonGenerarArchivo.bind("<Leave>", self.cursorFueraBotonGenerar)
@@ -97,13 +97,10 @@ class Inicio:
         #nuevaVentana = SeleccionarArchivo(Toplevel(), self.db, self.ventana)
         #nuevaVentana.ventana.focus_force()
         #nuevaVentana.ventana.mainloop()
-        
-    def leerPaciente(self):
-        self.ventana.destroy() 
-        LeerPaciente(self.ventana, self.listaPacientes)
 
-    def generarArchivo(self):
-        print()
+    def leerPaciente(self):
+        p = Princip(self.listaPacientes)
+        p.menuPrincipal()
         
     def salir(self):
         respuesta = messagebox.askyesno("Confirmacion", "¿Seguro que desea salir?", default="no")

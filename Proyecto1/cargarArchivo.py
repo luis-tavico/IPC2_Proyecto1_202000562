@@ -38,8 +38,9 @@ class CargarArchivo:
                         _y = (int(celda.attrib['f']) - 1) * tamañoRejilla
                         pos = _x + _y
                         posiciones.insertar(pos)
-                    #print(pos)
-            periodo = Periodo(1, columnas, filas, posiciones)
+            periodo = Periodo(0, columnas, filas, posiciones)
             listaPeriodos.insertar(periodo)
+            listaPeriodos.buscarPeriodo(0)
+            listaPeriodos.generarPatron()
             nuevoPaciente = Paciente(nombre=nombre, edad=edad, periodos=_periodos, listaPeriodos=listaPeriodos, tamañoRejilla=tamañoRejilla)
             self.listaPacientes.insertar(nuevoPaciente)

@@ -22,8 +22,10 @@ class ListaEnlazadaPeriodos:
         while actual != None:
             if actual.periodo.numeroPeriodo == numPeriodo:
                 self.nPeriodo = actual
-                break
+                if actual.periodo.posiciones != None:
+                    return False
             actual = actual.siguiente
+        return True
 
     def valores(self):
         valores = self.primero
@@ -69,8 +71,6 @@ class ListaEnlazadaPeriodos:
             patron += str(actual.numero) + ", "
             actual = actual.siguiente
         self.nPeriodo.periodo.patron = patron
-        print(actualPos)
-        print(patron)
 
     def compararPatron(self):
         primero = self.primero

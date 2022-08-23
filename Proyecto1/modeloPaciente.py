@@ -1,5 +1,5 @@
 class Paciente:
-    def __init__(self, nombre = None, edad = None, periodos = None, listaPeriodos = None, tamañoRejilla = None, n = None, resultado = None):
+    def __init__(self, nombre=None, edad=None, periodos=None, listaPeriodos=None, tamañoRejilla=None, n=None, resultado=None, mensaje=None):
         self.nombre = nombre
         self.edad = edad
         self.periodos = periodos
@@ -7,6 +7,7 @@ class Paciente:
         self.tamañoRejilla = tamañoRejilla
         self.n = n
         self.resultado = resultado
+        self.mensaje = mensaje
     
     def getNombre(self):
         return self.nombre
@@ -28,6 +29,9 @@ class Paciente:
 
     def getResultado(self):
         return self.resultado
+
+    def getMensaje(self):
+        return self.mensaje
 
     ######################################
 
@@ -51,3 +55,6 @@ class Paciente:
 
     def setResultado(self, resultado):
         self.resultado = resultado
+
+    def setMensaje(self, mensaje):
+        self.mensaje = mensaje
