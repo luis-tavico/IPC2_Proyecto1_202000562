@@ -1,6 +1,6 @@
-from tkinter import Tk
-from vistaInicio import Inicio
+from menuPrincipal import MenuPrincipal
 from listaEnlazadaPacientes import ListaEnlazadaPacientes
 
-nuevaVentana = Inicio(Tk(), ListaEnlazadaPacientes())
-nuevaVentana.ventana.mainloop()
+inicio = MenuPrincipal(ListaEnlazadaPacientes())
+inicio.menuPrincipal()
+
