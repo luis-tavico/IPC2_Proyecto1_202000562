@@ -22,6 +22,7 @@ class MenuPrincipal:
                 opcion = int(input("Ingrese una opcion: "))
                 if opcion == 1:
                     ruta = input("Ingrese la ruta del archivo:\n")
+                    print("")
                     if ruta != "":
                         CargarArchivo(ruta, self.listaPacientes)
                 elif opcion == 2:
@@ -94,6 +95,8 @@ class MenuPrincipal:
                     myData = ET.tostring(rootPacientes)
                     file = open("./datos.xml", "wb")
                     file.write(myData)
+                elif opcion == 7:
+                    print("¡Ejecucion Finalizada!")
                 else:
                     print("¡Ingrese una opcion valida!")
             except ValueError:

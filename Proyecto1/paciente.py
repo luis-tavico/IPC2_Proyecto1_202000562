@@ -161,17 +161,15 @@ class Paciente:
             if nPeriodoPatronIgual != None:
                 self.paciente.setN(nPeriodo - nPeriodoPatronIgual)
                 self.paciente.setPeriodos(nPeriodo)
-                msj = "El patron del periodo " + str(nPeriodo) + " se repite con el del periodo " + str(nPeriodoPatronIgual)
-                if nPeriodoPatronIgual == 1:
-                    if (nPeriodo - nPeriodoPatronIgual) == 1:
-                        self.paciente.setResultado("Mortal")
-                    else: 
-                        self.paciente.setResultado("Grave")
+                if nPeriodoPatronIgual == 0:
+                    msj = "El patron del periodo " + str(nPeriodo) + " se repite con el del periodo inicial"
                 else:
-                    if (nPeriodo - nPeriodoPatronIgual) == 1:
-                        self.paciente.setResultado("Mortal")
-                    else:
-                        self.paciente.setResultado("Grave")
+                    msj = "El patron del periodo " + str(nPeriodo) + " se repite con el del periodo " + str(nPeriodoPatronIgual)
+
+                if (nPeriodo - nPeriodoPatronIgual) == 1:
+                    self.paciente.setResultado("Mortal")
+                else:
+                    self.paciente.setResultado("Grave")
                 self.paciente.setMensaje(msj)   
                 if self.preguntar:            
                     print("\nCaso:",self.paciente.getResultado())
