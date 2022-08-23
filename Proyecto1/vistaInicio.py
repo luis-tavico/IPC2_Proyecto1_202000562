@@ -1,6 +1,6 @@
 from tkinter import W, Button, Frame, Label, PhotoImage, Toplevel, filedialog, messagebox, CENTER
 from cargarArchivo import CargarArchivo
-from asdf import Princip
+from menuPrincipal import MenuPrincipal
 
 class Inicio:
 
@@ -99,8 +99,8 @@ class Inicio:
         #nuevaVentana.ventana.mainloop()
 
     def leerPaciente(self):
-        p = Princip(self.listaPacientes)
-        p.menuPrincipal()
+        m = MenuPrincipal(self.listaPacientes)
+        m.menuPrincipal()
         
     def salir(self):
         respuesta = messagebox.askyesno("Confirmacion", "¿Seguro que desea salir?", default="no")

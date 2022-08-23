@@ -2,7 +2,7 @@ import xml.etree.ElementTree as ET
 from paciente import Paciente
 
 
-class Princip:
+class MenuPrincipal:
 
     def __init__(self, listaPacientes):
         self.listaPacientes = listaPacientes
