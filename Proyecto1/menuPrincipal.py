@@ -9,7 +9,7 @@ class MenuPrincipal:
     
     def menuPrincipal(self):
         opcion = 0
-        while opcion != 7:
+        while opcion != 6:
             print(" ============== MENU PRINCIPAL ============== ")
             print("| 1. Cargar Archivo (.xml)                   |")
             print("| 2. Leer Paciente                           |")
@@ -80,6 +80,12 @@ class MenuPrincipal:
                         print("\n¡No se han ingresado pacientes aun!\n")
                     opcion = 0
                 elif opcion == 5:
+                    pacientes = ET.Element('pacientes')
+                    datos = ET.tostring(pacientes)
+                    archivo_xml = open("./ArchivoSalida.xml", "wb")
+                    archivo_xml.write(datos)  
+                    archivo_xml.close()
+
                     pacientes = self.listaPacientes.valores()
 
                     while pacientes != None:   
@@ -88,14 +94,10 @@ class MenuPrincipal:
                         paciente.ejecutar()
                         paciente.reportar()
                         pacientes = pacientes.siguiente
+
                     print("\n¡Archivo creado exitosamente!\n")
                     opcion = 0
                 elif opcion == 6:
-                    rootPacientes = ET.Element('pacientes')
-                    myData = ET.tostring(rootPacientes)
-                    file = open("./datos.xml", "wb")
-                    file.write(myData)
-                elif opcion == 7:
                     print("¡Ejecucion Finalizada!")
                 else:
                     print("¡Ingrese una opcion valida!")

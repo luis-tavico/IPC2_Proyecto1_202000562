@@ -205,33 +205,7 @@ class Paciente:
         #webbrowser.open(pdf)
 
     def reportar(self):
-        '''nombrePaciente = self.paciente.getNombre()
-        edadPaciente = str(self.paciente.getEdad())
-        periodosPaciente = str(self.paciente.getPeriodos())
-        tamañoRejillaPaciente = str(self.paciente.getTamañoRejilla())
-        resultadoPaciente = self.paciente.getResultado()
-        nPaciente = str(self.paciente.getN())
-        pacientes = ET.Element('pacientes')
-        paciente = ET.SubElement(pacientes, 'paciente')
-        datospersonales = ET.SubElement(paciente, 'datospersonales')
-        nombre = ET.SubElement(datospersonales, 'nombre')
-        nombre.text = nombrePaciente
-        edad = ET.SubElement(datospersonales, 'edad')
-        edad.text = edadPaciente
-        periodos = ET.SubElement(paciente, 'periodos')
-        periodos.text = periodosPaciente
-        m = ET.SubElement(paciente, 'm')
-        m.text = tamañoRejillaPaciente
-        resultado = ET.SubElement(paciente, 'resultado')
-        resultado.text = resultadoPaciente
-        n = ET.SubElement(paciente, 'n')
-        n.text = nPaciente
-
-        myData = ET.tostring(pacientes)
-        file = open("./datos.xml", "wb")
-        file.write(myData)'''
-
-        archivo_xml = ET.parse("./datos.xml")
+        archivo_xml = ET.parse("./ArchivoSalida.xml")
         pacientes = archivo_xml.getroot() 
 
         nombrePaciente = self.paciente.getNombre()
@@ -256,4 +230,5 @@ class Paciente:
         n.text = nPaciente
 
         pacientes.append(paciente)
-        archivo_xml.write("./datos.xml") 
+        archivo_xml.write("./ArchivoSalida.xml")
+        #archivo_xml.close()
