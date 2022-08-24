@@ -7,7 +7,7 @@ class MenuPrincipal:
     def __init__(self, listaPacientes):
         self.listaPacientes = listaPacientes
     
-    def menuPrincipal(self):
+    def iniciar(self):
         opcion = 0
         while opcion != 6:
             print(" ============== MENU PRINCIPAL ============== ")
@@ -50,10 +50,12 @@ class MenuPrincipal:
                         pacientes = self.listaPacientes.valores()
 
                         while pacientes != None:
-                            if nombre == pacientes.paciente.getNombre():              
+                            if nombre == pacientes.paciente.getNombre():
+                                periodoPaciente = pacientes.paciente.getPeriodos()              
                                 pacientes.paciente.setPeriodos(periodo)
                                 paciente = Paciente(pacientes.paciente, True)
                                 paciente.ejecutar()
+                                pacientes.paciente.setPeriodos(periodoPaciente)
                                 break
                             pacientes = pacientes.siguiente
                         if pacientes == None:
@@ -68,10 +70,12 @@ class MenuPrincipal:
                         pacientes = self.listaPacientes.valores()
 
                         while pacientes != None:
-                            if nombre == pacientes.paciente.getNombre():              
+                            if nombre == pacientes.paciente.getNombre(): 
+                                periodoPaciente = pacientes.paciente.getPeriodos()               
                                 pacientes.paciente.setPeriodos(10000)
                                 paciente = Paciente(pacientes.paciente, True)
                                 paciente.ejecutar()
+                                pacientes.paciente.setPeriodos(periodoPaciente)
                                 break
                             pacientes = pacientes.siguiente
                         if pacientes == None:
@@ -80,18 +84,19 @@ class MenuPrincipal:
                         print("\n¡No se han ingresado pacientes aun!\n")
                     opcion = 0
                 elif opcion == 5:
-                    pacientes = ET.Element('pacientes')
-                    datos = ET.tostring(pacientes)
+                    datos = ET.tostring(ET.Element('pacientes'))
                     archivo_xml = open("./ArchivoSalida.xml", "wb")
                     archivo_xml.write(datos)  
                     archivo_xml.close()
 
                     pacientes = self.listaPacientes.valores()
 
-                    while pacientes != None:   
+                    while pacientes != None:
+                        periodoPaciente = pacientes.paciente.getPeriodos()    
                         pacientes.paciente.setPeriodos(10000)          
                         paciente = Paciente(pacientes.paciente, False)
                         paciente.ejecutar()
+                        pacientes.paciente.setPeriodos(periodoPaciente)
                         paciente.reportar()
                         pacientes = pacientes.siguiente
 

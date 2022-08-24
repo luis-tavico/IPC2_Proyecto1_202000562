@@ -5,8 +5,8 @@ import xml.etree.ElementTree as ET
 
 class Paciente:
 
-    def __init__(self, paciente, preguntar):
-        self.preguntar = preguntar
+    def __init__(self, paciente, info):
+        self.info = info
         self.paciente = paciente
 
     def ejecutar(self):
@@ -148,18 +148,19 @@ class Paciente:
 
             self.graficar(periodos.periodo.posiciones.valores(), tamañoRejilla, self.paciente.getNombre(), nPeriodo)
 
-            if self.paciente.getPeriodos() < 10000 and self.preguntar:
+            if self.paciente.getPeriodos() < 10000 and self.info:
                 print("Se ha ejecuta el periodo No.", str(nPeriodo), "¿Desea continuar?", "\n(Si=Presione Enter, No=Presione cualquier tecla)")
                 respuesta = input()
                 if respuesta != "":
                     break
-            elif self.paciente.getPeriodos() >= 10000 and self.preguntar:
+            elif self.paciente.getPeriodos() >= 10000 and self.info:
                 print("Se ha ejecuta el periodo No.", str(nPeriodo))
                 
 
             nPeriodoPatronIgual = listaPeriodos.compararPatron()
             if nPeriodoPatronIgual != None:
-                self.paciente.setN(nPeriodo - nPeriodoPatronIgual)
+                self.paciente.setN(nPeriodo)
+                self.paciente.setN1(nPeriodo - nPeriodoPatronIgual)
                 self.paciente.setPeriodos(nPeriodo)
                 if nPeriodoPatronIgual == 0:
                     msj = "El patron del periodo " + str(nPeriodo) + " se repite con el del periodo inicial"
@@ -171,11 +172,11 @@ class Paciente:
                 else:
                     self.paciente.setResultado("Grave")
                 self.paciente.setMensaje(msj)   
-                if self.preguntar:            
+                if self.info:            
                     print("\nCaso:",self.paciente.getResultado())
                 break
         
-        if self.preguntar:
+        if self.info:
             print(msj)
             print("")
 
@@ -214,6 +215,7 @@ class Paciente:
         tamañoRejillaPaciente = str(self.paciente.getTamañoRejilla())
         resultadoPaciente = self.paciente.getResultado()
         nPaciente = str(self.paciente.getN())
+        n1Paciente = str(self.paciente.getN1())
         paciente = ET.Element('paciente')
         datospersonales = ET.SubElement(paciente, 'datospersonales')
         nombre = ET.SubElement(datospersonales, 'nombre')
@@ -228,7 +230,8 @@ class Paciente:
         resultado.text = resultadoPaciente
         n = ET.SubElement(paciente, 'n')
         n.text = nPaciente
+        n1 = ET.SubElement(paciente, 'n1')
+        n1.text = n1Paciente
 
         pacientes.append(paciente)
         archivo_xml.write("./ArchivoSalida.xml")
-        #archivo_xml.close()
