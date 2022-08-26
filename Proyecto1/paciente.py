@@ -171,9 +171,8 @@ class Paciente:
 
             nPeriodoPatronIgual = listaPeriodos.compararPatron()
             if nPeriodoPatronIgual != None:
-                self.paciente.setN(nPeriodo)
+                self.paciente.setN(nPeriodoPatronIgual)
                 self.paciente.setN1(nPeriodo - nPeriodoPatronIgual)
-                self.paciente.setPeriodos(nPeriodo)
                 if nPeriodoPatronIgual == 0:
                     msj = "El patron del periodo " + str(nPeriodo) + " se repite con el del periodo inicial"
                 else:
@@ -244,6 +243,8 @@ class Paciente:
         n.text = nPaciente
         n1 = ET.SubElement(paciente, 'n1')
         n1.text = n1Paciente
+        asdf = ET.SubElement(paciente, 'asdf')
+        asdf.text = None
 
         pacientes.append(paciente)
         archivo_xml.write("./ArchivoSalida.xml")

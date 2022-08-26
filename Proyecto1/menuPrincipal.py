@@ -50,12 +50,10 @@ class MenuPrincipal:
                         pacientes = self.listaPacientes.valores()
 
                         while pacientes != None:
-                            if nombre == pacientes.paciente.getNombre():
-                                periodoPaciente = pacientes.paciente.getPeriodos()              
+                            if nombre == pacientes.paciente.getNombre():         
                                 pacientes.paciente.setPeriodos(periodo)
                                 paciente = Paciente(pacientes.paciente, True)
                                 paciente.ejecutar()
-                                pacientes.paciente.setPeriodos(periodoPaciente)
                                 break
                             pacientes = pacientes.siguiente
                         if pacientes == None:
@@ -70,12 +68,10 @@ class MenuPrincipal:
                         pacientes = self.listaPacientes.valores()
 
                         while pacientes != None:
-                            if nombre == pacientes.paciente.getNombre(): 
-                                periodoPaciente = pacientes.paciente.getPeriodos()               
+                            if nombre == pacientes.paciente.getNombre():             
                                 pacientes.paciente.setPeriodos(10000)
                                 paciente = Paciente(pacientes.paciente, True)
                                 paciente.ejecutar()
-                                pacientes.paciente.setPeriodos(periodoPaciente)
                                 break
                             pacientes = pacientes.siguiente
                         if pacientes == None:
@@ -92,11 +88,10 @@ class MenuPrincipal:
                     pacientes = self.listaPacientes.valores()
 
                     while pacientes != None:
-                        periodoPaciente = pacientes.paciente.getPeriodos()    
-                        pacientes.paciente.setPeriodos(10000)          
+                        if pacientes.paciente.getResultado() == None:
+                            pacientes.paciente.setPeriodos(10000)          
                         paciente = Paciente(pacientes.paciente, False)
                         paciente.ejecutar()
-                        pacientes.paciente.setPeriodos(periodoPaciente)
                         paciente.reportar()
                         pacientes = pacientes.siguiente
 
