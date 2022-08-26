@@ -3,4 +3,3 @@ from listaEnlazadaPacientes import ListaEnlazadaPacientes
 
 menu = MenuPrincipal(ListaEnlazadaPacientes())
 menu.iniciar()
-

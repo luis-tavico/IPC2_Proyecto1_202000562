@@ -80,7 +80,7 @@ class Paciente:
                 valorY = fil.valores()
                 valorX = col.valores()
                 while valorX != None and valorY != None:
-                    for i in range(4):
+                    for i in range(8):
                         if i == 0:
                             x = valorX.numero - 1
                             y = valorY.numero
@@ -92,6 +92,18 @@ class Paciente:
                             y = valorY.numero - 1
                         elif i == 3:
                             x = valorX.numero
+                            y = valorY.numero + 1
+                        elif i == 4:
+                            x = valorX.numero - 1
+                            y = valorY.numero - 1
+                        elif i == 5:
+                            x = valorX.numero + 1
+                            y = valorY.numero - 1
+                        elif i == 6:
+                            x = valorX.numero + 1
+                            y = valorY.numero + 1
+                        elif i == 7:
+                            x = valorX.numero - 1
                             y = valorY.numero + 1
                         celdasInfectadas = 0
                         valY = fil.valores()
@@ -124,7 +136,7 @@ class Paciente:
                                 if not(listaPeriodos.buscarCeldas(x,y)):                 
                                     columnas.insertar(x)
                                     filas.insertar(y)
-                                    if (x == 1):
+                                    if (y == 1):
                                         val_x = x
                                         val_y = y * 0
                                     else:
