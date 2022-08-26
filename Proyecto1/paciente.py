@@ -243,8 +243,6 @@ class Paciente:
         n.text = nPaciente
         n1 = ET.SubElement(paciente, 'n1')
         n1.text = n1Paciente
-        asdf = ET.SubElement(paciente, 'asdf')
-        asdf.text = None
 
         pacientes.append(paciente)
         archivo_xml.write("./ArchivoSalida.xml")
