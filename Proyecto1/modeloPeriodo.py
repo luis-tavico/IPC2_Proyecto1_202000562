@@ -4,4 +4,3 @@ class Periodo:
         self.posicionX = posicionX
         self.posicionY = posicionY
         self.posiciones = posiciones
-        self.patron = ""

@@ -1,6 +1,6 @@
 import xml.etree.ElementTree as ET
 from modeloPaciente import Paciente
-from listaEnlazadaPeriodos import ListaEnlazadaPeriodos
+from listaDobleEnlazadaPeriodos import ListaDobleEnlazadaPeriodos
 from modeloPeriodo import Periodo
 from listaDobleEnlazadaNumeros import ListaDobleEnlazadaNumeros
 
@@ -18,7 +18,7 @@ class CargarArchivo:
             columnas = ListaDobleEnlazadaNumeros()
             filas = ListaDobleEnlazadaNumeros()
             posiciones = ListaDobleEnlazadaNumeros()
-            listaPeriodos = ListaEnlazadaPeriodos()
+            listaPeriodos = ListaDobleEnlazadaPeriodos()
             datosPersonales = paciente.find('datospersonales')
             nombre = datosPersonales.find('nombre').text
             edad = datosPersonales.find('edad').text

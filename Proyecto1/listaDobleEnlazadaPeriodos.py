@@ -1,24 +1,26 @@
 class Nodo:
-    def __init__(self, periodo=None, siguiente=None):
+    def __init__(self, periodo=None, siguiente=None, anterior=None):
         self.periodo = periodo
         self.siguiente = siguiente
+        self.anterior = anterior
 
-class ListaEnlazadaPeriodos:
+class ListaDobleEnlazadaPeriodos:
     def __init__(self):
         self.primero = None
+        self.primero_ = None
         self.nPeriodo = None
 
     def insertar(self, periodo):
         if self.primero == None:
             self.primero = Nodo(periodo=periodo)
-            return
-        actual = self.primero
-        while actual.siguiente:
-            actual = actual.siguiente
-        actual.siguiente = Nodo(periodo=periodo)
+            self.primero_ = self.primero
+        else:
+            actual = Nodo(periodo=periodo, anterior=self.primero)
+            self.primero.siguiente = actual
+            self.primero = actual 
 
     def buscarPeriodo(self, numPeriodo):
-        actual = self.primero
+        actual = self.primero_
         while actual != None:
             if actual.periodo.numeroPeriodo == numPeriodo:
                 self.nPeriodo = actual
@@ -28,7 +30,7 @@ class ListaEnlazadaPeriodos:
         return True
 
     def valores(self):
-        valores = self.primero
+        valores = self.primero_
         return valores
 
     def buscarCeldas(self, posX, posY):
@@ -43,7 +45,6 @@ class ListaEnlazadaPeriodos:
 
     def generarPatron(self):
         actualPos = self.nPeriodo.periodo.posiciones.valores()
-        patron = self.nPeriodo.periodo.patron
 
         for i in range(self.nPeriodo.periodo.posicionX.longitud()):
             auxPos = actualPos.numero
@@ -60,22 +61,19 @@ class ListaEnlazadaPeriodos:
                     actualPos = actualPos.siguiente
                 avance -= 1
 
-        while actualPos != None:
-            if actualPos.anterior != None:
-                actualPos = actualPos.anterior
-            else:
-                break
-
-        actual = actualPos
-        while actual != None:
-            patron += str(actual.numero) + ", "
-            actual = actual.siguiente
-        self.nPeriodo.periodo.patron = patron
-
     def compararPatron(self):
-        primero = self.primero
         actual = self.nPeriodo
-        while primero.periodo.numeroPeriodo != actual.periodo.numeroPeriodo:   
-            if primero.periodo.patron == actual.periodo.patron:
-                return primero.periodo.numeroPeriodo
-            primero = primero.siguiente
+        anterior = actual.anterior
+        while anterior != None:
+            posicionesAnteriorPeriodo = anterior.periodo.posiciones.valores()
+            posicionesActualPeriodo = actual.periodo.posiciones.valores()   
+            if (posicionesAnteriorPeriodo and posicionesActualPeriodo) != None:     
+                while posicionesAnteriorPeriodo.numero == posicionesActualPeriodo.numero:
+                    posicionesAnteriorPeriodo = posicionesAnteriorPeriodo.siguiente
+                    posicionesActualPeriodo = posicionesActualPeriodo.siguiente
+                    if posicionesAnteriorPeriodo == None and posicionesActualPeriodo == None:
+                        return anterior.periodo.numeroPeriodo
+                    elif posicionesAnteriorPeriodo == None or posicionesActualPeriodo == None:
+                        break
+            anterior = anterior.anterior
+        return None
