@@ -195,53 +195,54 @@ class Paciente:
             print("El patron inicial o algun otro patron no se repite\n")
 
     def graficar(self, posi, tamañoRejilla, nombrePaciente, periodoPaciente): 
-        posicion = 0
-        graphviz = 'digraph Grafica{\n  node[shape=box fillcolor="#EC961B" style=filled  fontcolor=white  color="#99A3A4"]\n  subgraph cluster_rejilla{\n    label = "PERIODO ' + str(periodoPaciente) +'"\n    fontcolor = "black"\n    fontname = "arial"\n    bgcolor = "white"\n    color = white\n    raiz[label="0"]\n    edge[dir="none" style=invisible]\n'
-        fila = ""
-        columna = ""
-        unionNodo = ""
-        alinearNodo = ""
-        for numero in range(tamañoRejilla):
-            fila += '    fila'+ str(numero+1) + '[label="'+ str(numero+1) + '"];\n'
-            columna += '    columna'+ str(numero+1) + '[label="'+ str(numero+1) + '"];\n'
-        graphviz += fila
-        graphviz += columna
-        fila = ""
-        columna = ""
-        for num in range(tamañoRejilla-1):
-            fila += '    fila'+ str(num+1) +'->fila'+ str(num+2) +'\n'
-            columna += '    columna'+ str(num+1) +'->columna'+ str(num+2) +'\n'
-        graphviz += fila
-        graphviz += columna
-        graphviz += '    raiz->fila1\n    raiz->columna1\n    {rank = same;raiz'
-        for nColumna in range(tamañoRejilla):
-            graphviz += ';columna'+ str(nColumna+1)
-        graphviz += '}\n'
-        for numFila in range(tamañoRejilla):
-            unionNodo += '    fila' + str(numFila+1)
-            alinearNodo += '    {rank=same;fila'+ str(numFila+1)
-            for i in range(tamañoRejilla):
-                posicion += 1
-                unionNodo += '->nodo'+ str(posicion) 
-                alinearNodo += ';nodo'+ str(posicion)
-                if posi != None:
-                    if posicion == posi.numero:
-                        graphviz += '    nodo'+ str(posicion) +'[label="", fillcolor=blue]\n'  
-                        posi = posi.siguiente
+        if tamañoRejilla <= 100:
+            posicion = 0
+            graphviz = 'digraph Grafica{\n  node[shape=box fillcolor="#EC961B" style=filled  fontcolor=white  color="#99A3A4"]\n  subgraph cluster_rejilla{\n    label = "PERIODO ' + str(periodoPaciente) +'"\n    fontcolor = "black"\n    fontname = "arial"\n    bgcolor = "white"\n    color = white\n    raiz[label="0"]\n    edge[dir="none" style=invisible]\n'
+            fila = ""
+            columna = ""
+            unionNodo = ""
+            alinearNodo = ""
+            for numero in range(tamañoRejilla):
+                fila += '    fila'+ str(numero+1) + '[label="'+ str(numero+1) + '"];\n'
+                columna += '    columna'+ str(numero+1) + '[label="'+ str(numero+1) + '"];\n'
+            graphviz += fila
+            graphviz += columna
+            fila = ""
+            columna = ""
+            for num in range(tamañoRejilla-1):
+                fila += '    fila'+ str(num+1) +'->fila'+ str(num+2) +'\n'
+                columna += '    columna'+ str(num+1) +'->columna'+ str(num+2) +'\n'
+            graphviz += fila
+            graphviz += columna
+            graphviz += '    raiz->fila1\n    raiz->columna1\n    {rank = same;raiz'
+            for nColumna in range(tamañoRejilla):
+                graphviz += ';columna'+ str(nColumna+1)
+            graphviz += '}\n'
+            for numFila in range(tamañoRejilla):
+                unionNodo += '    fila' + str(numFila+1)
+                alinearNodo += '    {rank=same;fila'+ str(numFila+1)
+                for i in range(tamañoRejilla):
+                    posicion += 1
+                    unionNodo += '->nodo'+ str(posicion) 
+                    alinearNodo += ';nodo'+ str(posicion)
+                    if posi != None:
+                        if posicion == posi.numero:
+                            graphviz += '    nodo'+ str(posicion) +'[label="", fillcolor=blue]\n'  
+                            posi = posi.siguiente
+                        else:
+                            graphviz += '    nodo'+ str(posicion) +'[label="", fillcolor=white]\n'    
                     else:
-                        graphviz += '    nodo'+ str(posicion) +'[label="", fillcolor=white]\n'    
-                else:
-                    graphviz += '    nodo'+ str(posicion) +'[label="", fillcolor=white]\n'                
-            unionNodo += '\n'
-            alinearNodo += '}\n'
-        graphviz += unionNodo
-        graphviz += alinearNodo
-        graphviz += '   }\n}'
-        txt = 'grafica.txt'
-        with open(txt, 'w') as grafica:
-            grafica.write(graphviz)
-        pdf = nombrePaciente + 'Periodo' + str(periodoPaciente) + '.pdf'
-        os.system("dot.exe -Tpdf " + txt + " -o " + pdf)
+                        graphviz += '    nodo'+ str(posicion) +'[label="", fillcolor=white]\n'                
+                unionNodo += '\n'
+                alinearNodo += '}\n'
+            graphviz += unionNodo
+            graphviz += alinearNodo
+            graphviz += '   }\n}'
+            txt = 'grafica.txt'
+            with open(txt, 'w') as grafica:
+                grafica.write(graphviz)
+            pdf = nombrePaciente + 'Periodo' + str(periodoPaciente) + '.pdf'
+            os.system("dot.exe -Tpdf " + txt + " -o " + pdf)
 
     def reportar(self):
         archivo_xml = ET.parse("./ArchivoSalida.xml")
