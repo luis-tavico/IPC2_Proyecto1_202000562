@@ -197,7 +197,7 @@ class Paciente:
     def graficar(self, posi, tamañoRejilla, nombrePaciente, periodoPaciente): 
         if tamañoRejilla <= 100:
             posicion = 0
-            graphviz = 'digraph Grafica{\n  nodesep="0 equally"\n  ranksep="0.02 equally"\n  node[shape=box fillcolor="white" style=filled  fontcolor=black  color="gray"]\n  subgraph cluster_rejilla{\n    label = "PERIODO ' + str(periodoPaciente) +'"\n    fontcolor = "black"\n    fontname = "arial"\n    bgcolor = "white"\n    color = white\n    raiz[label="" color="white"]\n    edge[dir="none" style=invisible]\n'
+            graphviz = 'digraph Grafica{\n  nodesep="0 equally"\n  ranksep="0.02 equally"\n  node[shape=box fillcolor="white" style=filled fontcolor=black color="gray" fontname="arial"]\n  subgraph cluster_rejilla{\n    label = "PERIODO ' + str(periodoPaciente) +'"\n    fontcolor = "black"\n    fontname = "arial"\n    bgcolor = "white"\n    color = white\n    raiz[label="" color="white"]\n    edge[dir="none" style=invisible]\n'
             fila = ""
             columna = ""
             unionNodo = ""
