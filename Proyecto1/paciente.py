@@ -23,7 +23,7 @@ class Paciente:
         tamañoRejilla = self.paciente.getTamañoRejilla()
         msj = ("¡No se obtuvo ningun resultado!")
 
-        self.graficar(periodos.periodo.posiciones.valores(), tamañoRejilla, self.paciente.getNombre(), "Inicial")
+        self.graficar(periodos.periodo.posiciones.valores(), tamañoRejilla, self.paciente.getNombre(), "INICIAL")
 
         for i in range(self.paciente.getPeriodos()):
             nPeriodo = i+1 
@@ -197,14 +197,14 @@ class Paciente:
     def graficar(self, posi, tamañoRejilla, nombrePaciente, periodoPaciente): 
         if tamañoRejilla <= 100:
             posicion = 0
-            graphviz = 'digraph Grafica{\n  node[shape=box fillcolor="#EC961B" style=filled  fontcolor=white  color="#99A3A4"]\n  subgraph cluster_rejilla{\n    label = "PERIODO ' + str(periodoPaciente) +'"\n    fontcolor = "black"\n    fontname = "arial"\n    bgcolor = "white"\n    color = white\n    raiz[label="0"]\n    edge[dir="none" style=invisible]\n'
+            graphviz = 'digraph Grafica{\n  nodesep="0 equally"\n  ranksep="0.02 equally"\n  node[shape=box fillcolor="white" style=filled  fontcolor=black  color="gray"]\n  subgraph cluster_rejilla{\n    label = "PERIODO ' + str(periodoPaciente) +'"\n    fontcolor = "black"\n    fontname = "arial"\n    bgcolor = "white"\n    color = white\n    raiz[label="" color="white"]\n    edge[dir="none" style=invisible]\n'
             fila = ""
             columna = ""
             unionNodo = ""
             alinearNodo = ""
             for numero in range(tamañoRejilla):
-                fila += '    fila'+ str(numero+1) + '[label="'+ str(numero+1) + '"];\n'
-                columna += '    columna'+ str(numero+1) + '[label="'+ str(numero+1) + '"];\n'
+                fila += '    fila'+ str(numero+1) + '[label="'+ str(numero+1) + '" color="white"];\n'
+                columna += '    columna'+ str(numero+1) + '[label="'+ str(numero+1) + '" color="white"];\n'
             graphviz += fila
             graphviz += columna
             fila = ""
