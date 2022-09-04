@@ -186,8 +186,7 @@ class Paciente:
                     print("->Caso:",self.paciente.getResultado())
                     print(msj)
                     print()
-                if self.paciente.getPeriodos() == 10000:
-                    break
+                break
             
         if self.resultado == None:
             self.paciente.setResultado("Leve")
@@ -243,9 +242,9 @@ class Paciente:
                 grafica.write(graphviz)
             pdf = nombrePaciente + 'Periodo' + str(periodoPaciente) + '.pdf'
             os.system("dot.exe -Tpdf " + txt + " -o " + pdf)
-
+            
     def reportar(self):
-        archivo_xml = ET.parse("./ArchivoSalida.xml")
+        archivo_xml = ET.parse("./Datos.xml")
         pacientes = archivo_xml.getroot() 
 
         nombrePaciente = self.paciente.getNombre()
@@ -273,4 +272,4 @@ class Paciente:
         n1.text = n1Paciente
 
         pacientes.append(paciente)
-        archivo_xml.write("./ArchivoSalida.xml")
+        archivo_xml.write("./Datos.xml")
