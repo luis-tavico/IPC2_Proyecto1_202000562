@@ -81,7 +81,7 @@ class MenuPrincipal:
                     opcion = 0
                 elif opcion == 5:
                     datos = ET.tostring(ET.Element('pacientes'))
-                    archivo_xml = open("./ArchivoSalida.xml", "wb")
+                    archivo_xml = open("./Datos.xml", "wb")
                     archivo_xml.write(datos)  
                     archivo_xml.close()
 
